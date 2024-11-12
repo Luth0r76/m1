@@ -1,26 +1,37 @@
-/* Reset y variables */
+/* ==========================================================================
+   Variables Globales
+   ========================================================================== */
 :root {
-    /* Tamaños de texto fijos y maximizados */
-    --text-xxl: clamp(2rem, 5vw, 2.5rem);     /* Min: 32px, Max: 40px */
-    --text-xl: clamp(1.75rem, 4vw, 2rem);     /* Min: 28px, Max: 32px */
-    --text-lg: clamp(1.5rem, 3.5vw, 1.75rem); /* Min: 24px, Max: 28px */
-    --text-md: clamp(1.25rem, 3vw, 1.5rem);   /* Min: 20px, Max: 24px */
-    --text-sm: clamp(1.125rem, 2.5vw, 1.25rem); /* Min: 18px, Max: 20px */
+    /* Tamaños de texto usando clamp para responsividad
+       Formato: clamp(mínimo, preferido, máximo) */
+    --text-xxl: clamp(2rem, 5vw, 2.5rem);     /* 32px - 40px */
+    --text-xl: clamp(1.75rem, 4vw, 2rem);     /* 28px - 32px */
+    --text-lg: clamp(1.5rem, 3.5vw, 1.75rem); /* 24px - 28px */
+    --text-md: clamp(1.25rem, 3vw, 1.5rem);   /* 20px - 24px */
+    --text-sm: clamp(1.125rem, 2.5vw, 1.25rem); /* 18px - 20px */
     
-    /* Colores y otras variables */
+    /* Colores principales - Modificar para cambiar el tema */
     --primary-color: #0780e3;
     --success-color: #4CAF50;
     --error-color: #f44336;
-    --background-color: #f5f5f5;
-    --surface-color: #ffffff;
+    
+    /* Colores de fondo y texto */
+    --background-color: #9b9b9b;
+    --surface-color: #9b9b9b;
     --text-primary: #333333;
     --text-secondary: #666666;
+    
+    /* Estilos de diseño */
     --border-radius: 12px;
+    
+    /* Variables para notch y safe areas */
     --safe-area-inset-top: env(safe-area-inset-top, 0px);
     --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
 }
 
-/* Estilos base */
+/* ==========================================================================
+   Reset y Estilos Base
+   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -36,10 +47,14 @@ body {
     font-size: var(--text-md);
     min-height: 100vh;
     min-height: -webkit-fill-available;
+    /* Ajuste para notch y safe areas */
     padding: var(--safe-area-inset-top) 0 var(--safe-area-inset-bottom) 0;
 }
 
-/* Encabezados con tamaño mínimo garantizado */
+/* ==========================================================================
+   Encabezados
+   ========================================================================== */
+/* Título principal */
 h1 {
     font-size: var(--text-xxl);
     font-weight: 800;
@@ -49,9 +64,10 @@ h1 {
     min-height: calc(var(--text-xxl) * 1.2);
 }
 
+/* Subtítulo */
 h2 {
     font-size: var(--text-xl);
-    font-weight: 700;
+    font-weight: 600;
     text-align: center;
     margin: 12px 0;
     color: var(--text-secondary);
@@ -59,19 +75,22 @@ h2 {
     min-height: calc(var(--text-xl) * 1.3);
 }
 
-/* Barra de progreso con texto grande */
+/* ==========================================================================
+   Componentes del Quiz
+   ========================================================================== */
+/* Barra de progreso */
 .progress {
     text-align: center;
     background: #f8f9fa;
     padding: 16px;
     border-radius: var(--border-radius);
-    font-weight: 600;
     font-size: var(--text-lg);
+    font-weight: 400;
     color: var(--text-secondary);
     margin: 12px 0;
 }
 
-/* Contenedor de preguntas con texto grande */
+/* Contenedor de preguntas */
 .question {
     font-size: var(--text-lg);
     font-weight: 700;
@@ -80,7 +99,7 @@ h2 {
     color: var(--text-primary);
 }
 
-/* Opciones con texto grande */
+/* Opciones de respuesta */
 .option {
     background: #f8f9fa;
     padding: 20px;
@@ -92,10 +111,13 @@ h2 {
     line-height: 1.4;
     margin-bottom: 12px;
     transition: all 0.2s ease;
-    min-height: calc(var(--text-md) * 2.8); /* Garantizar altura mínima para el texto */
+    min-height: calc(var(--text-md) * 2.8);
 }
 
-/* Botones con texto grande */
+/* ==========================================================================
+   Botones y Controles
+   ========================================================================== */
+/* Estilos base de botones */
 button {
     background: var(--primary-color);
     color: white;
@@ -111,80 +133,17 @@ button {
     min-height: calc(var(--text-md) * 3);
 }
 
-/* Score y estadísticas */
-.statistics {
-    display: none;
-}
-
-.statistics.show {
-    display: block;
-}
-
-.score {
-    background: #e3f2fd;
-    padding: 20px;
-    border-radius: var(--border-radius);
-    font-size: var(--text-lg);
-    font-weight: 700;
-    text-align: center;
-    color: var(--primary-color);
-    margin: 20px 0;
-    line-height: 1.3;
-    min-height: calc(var(--text-lg) * 2.6);
-}
-
-.stat-value {
-    font-size: var(--text-xl);
-    font-weight: 800;
-    color: var(--primary-color);
-    margin-bottom: 8px;
-    min-height: calc(var(--text-xl) * 1.5);
-}
-
-.stat-label {
-    font-size: var(--text-md);
-    color: var(--text-secondary);
-    font-weight: 500;
-    min-height: calc(var(--text-md) * 1.5);
-}
-
-/* Resultados con texto grande */
-.result-item {
-    background: #f8f9fa;
-    padding: 20px;
-    border-radius: var(--border-radius);
-    margin: 16px 0;
-    border-left: 6px solid transparent;
-    font-size: var(--text-md);
-    min-height: calc(var(--text-md) * 3);
-}
-
-.result-item.correct {
-    border-left-color: var(--success-color);
-    background: #f1f8e9;
-}
-
-.result-item.incorrect {
-    border-left-color: var(--error-color);
-    background: #fef2f2;
-}
-
-/* Botón de reinicio con texto grande */
+/* Botón de reinicio */
 .restart-button {
     width: 100%;
-    background: var(--primary-color);
-    color: white;
     padding: 20px;
-    border-radius: var(--border-radius);
     font-size: var(--text-lg);
     font-weight: 700;
     margin: 20px 0;
-    text-transform: uppercase;
-    letter-spacing: 1px;
     min-height: calc(var(--text-lg) * 3);
 }
 
-/* Controles sticky */
+/* Contenedor de controles sticky */
 .controls {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -200,7 +159,73 @@ button {
     padding-bottom: calc(20px + var(--safe-area-inset-bottom));
 }
 
-/* Ya no necesitamos reducir tamaños en pantallas pequeñas */
+/* ==========================================================================
+   Estadísticas y Resultados
+   ========================================================================== */
+/* Contenedor de estadísticas - Oculto por defecto */
+.statistics {
+    display: none;
+}
+
+.statistics.show {
+    display: block;
+}
+
+/* Puntuación */
+.score {
+    background: #afdeff;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    font-size: var(--text-lg);
+    font-weight: 700;
+    text-align: center;
+    color: var(--primary-color);
+    margin: 20px 0;
+    line-height: 1.3;
+    min-height: calc(var(--text-lg) * 2.6);
+}
+
+/* Valores y etiquetas de estadísticas */
+.stat-value {
+    font-size: var(--text-xl);
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+    min-height: calc(var(--text-xl) * 1.5);
+}
+
+.stat-label {
+    font-size: var(--text-md);
+    color: var(--text-secondary);
+    font-weight: 500;
+    min-height: calc(var(--text-md) * 1.5);
+}
+
+/* Elementos de resultado */
+.result-item {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    margin: 16px 0;
+    border-left: 6px solid transparent;
+    font-size: var(--text-md);
+    min-height: calc(var(--text-md) * 3);
+}
+
+.result-item.correct {
+    border-left-color: var(--success-color);
+    background: #6f8e4d;
+}
+
+.result-item.incorrect {
+    border-left-color: var(--error-color);
+    background: #bc6363;
+}
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+/* Pantallas pequeñas */
 @media (max-width: 320px) {
     .controls {
         grid-template-columns: 1fr;
@@ -211,7 +236,7 @@ button {
     }
 }
 
-/* Media queries para tablets y pantallas más grandes */
+/* Tablets y pantallas más grandes */
 @media (min-width: 768px) {
     .quiz-container {
         max-width: 700px;
@@ -224,7 +249,9 @@ button {
     }
 }
 
-/* Tema oscuro */
+/* ==========================================================================
+   Tema Oscuro
+   ========================================================================== */
 @media (prefers-color-scheme: dark) {
     :root {
         --background-color: #121212;
