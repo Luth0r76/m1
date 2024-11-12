@@ -90,29 +90,35 @@ function showScore() {
         <p>Has acertado ${score} de ${questions.length} preguntas (${percentage.toFixed(1)}%)</p>
     `;
 
-    detailedResults.innerHTML = '<h3>Revisión Detallada</h3>';
-    
-    currentQuestions.forEach((question, index) => {
-        const isCorrect = userAnswers[index] === question.correct;
-        const resultItem = document.createElement('div');
-        resultItem.className = `result-item ${isCorrect ? 'correct' : 'incorrect'}`;
+    // Solo mostrar las preguntas incorrectas
+    const incorrectQuestions = currentQuestions.filter((_, index) => 
+        userAnswers[index] !== currentQuestions[index].correct
+    );
+
+    if (incorrectQuestions.length > 0) {
+        detailedResults.innerHTML = '<h3>Preguntas a Repasar</h3>';
         
-        resultItem.innerHTML = `
-            <div class="result-question">
-                <span class="icon-result ${isCorrect ? 'icon-correct' : 'icon-incorrect'}">
-                    ${isCorrect ? '✓' : '✗'}
-                </span>
-                ${question.question}
-            </div>
-            <div class="result-options">
-                <p><strong>Tu respuesta:</strong> ${userAnswers[index] !== -1 ? 
-                    question.options[userAnswers[index]] : 'No contestada'}</p>
-                <p><strong>Respuesta correcta:</strong> ${question.options[question.correct]}</p>
-            </div>
-        `;
-        
-        detailedResults.appendChild(resultItem);
-    });
+        currentQuestions.forEach((question, index) => {
+            if (userAnswers[index] !== question.correct) {
+                const resultItem = document.createElement('div');
+                resultItem.className = 'result-item incorrect';
+                
+                resultItem.innerHTML = `
+                    <div class="result-question">
+                        <span class="icon-result icon-incorrect">✗</span>
+                        ${question.question}
+                    </div>
+                    <div class="result-options">
+                        <p><strong>Respuesta correcta:</strong> ${question.options[question.correct]}</p>
+                    </div>
+                `;
+                
+                detailedResults.appendChild(resultItem);
+            }
+        });
+    } else {
+        detailedResults.innerHTML = '<h3>¡Felicitaciones! Has respondido todo correctamente</h3>';
+    }
 }
 
 function shuffleQuestions() {
