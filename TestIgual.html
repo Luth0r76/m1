@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>JOSE ACADEMY 🤖</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>JOSE ACADEMY 🤖</h1>
+        <h2>Test de Igual-daz</h2>
+        
+ 
+
+        <div id="quiz-section">
+            <div class="progress">Pregunta <span id="current-question">1</span> de <span id="total-questions">10</span></div>
+            <div id="question-container" class="question-container">
+                <div id="question" class="question"></div>
+                <div id="options" class="options"></div>
+            </div>
+            <div class="controls">
+                <button id="prev-btn" disabled>Anterior</button>
+                <button id="shuffle-btn" class="shuffle-button">Mezclar Preguntas</button>
+                <button id="next-btn">Siguiente</button>
+            </div>
+        </div>
+        
+        <div id="results-section" class="results-container">
+            <div id="score" class="score"></div>
+            <div class="summary-stats">
+                <div class="stat-item">
+                    <div id="total-correct" class="stat-value">0</div>
+                    <div class="stat-label">Aciertos</div>
+                </div>
+                <div class="stat-item">
+                    <div id="total-incorrect" class="stat-value">0</div>
+                    <div class="stat-label">Fallos</div>
+                </div>
+                <div class="stat-item">
+                    <div id="total-percentage" class="stat-value">0%</div>
+                    <div class="stat-label">Porcentaje</div>
+                </div>
+            </div>
+            <div id="detailed-results"></div>
+            <button id="restart-btn" class="restart-button">Reiniciar Test</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/Questions/QuestionsIgualdaz.js"></script>
+    <script src="js/quizLogic.js"></script>
+</body>
+</html>
