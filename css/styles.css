@@ -280,6 +280,13 @@ button {
         background-color: #4a1f23;
     }
 
+
+   /* Optimización para iOS con notch y Android */
+body {
+    padding-top: var(--safe-area-inset-top);
+    padding-bottom: var(--safe-area-inset-bottom);
+}
+
     .score {
         background: #1a3f5f;
     }
